@@ -6,12 +6,11 @@ const ExpenseList: React.FC = () => {
     const [expenses, setExpenses] = useState<Expense[]>([]);
 
     useEffect(() => {
-        fetchExpenses();
+        fetchExpenses().then(r => console.log("Expenses data has been fetched!"));
     }, []);
 
     const fetchExpenses = async () => {
         try {
-            console.log("TEST")
             const data = await getExpenses();
             setExpenses(data);
         } catch (error) {
