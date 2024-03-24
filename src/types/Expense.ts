@@ -1,4 +1,4 @@
-export default interface ExpenseData {
+export default interface Expense {
     id?: any | null,
     name: string,
     expenseCategory: string,

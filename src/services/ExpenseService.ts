@@ -1,17 +1,14 @@
-import http from "../http-common";
-import Expense from "../types/Expense";
+import axios from 'axios';
+import Expense from '../types/Expense';
 
-const getAll = () => {
-    return http.get<Array<Expense>>("/expense");
+const API_URL = 'http://127.0.0.1:8083/api/expense/list';
+
+export const getExpenses = async (): Promise<Expense[]> => {
+    const response = await axios.get(API_URL);
+    console.log("OSKAR: " + response)
+    return response.data;
 };
 
-const get = (id: any) => {
-    return http.get<Expense>(`/expense/${id}`);
+export const addExpense = async (expense: Expense): Promise<void> => {
+    await axios.post(API_URL, expense);
 };
-
-const ExpenseService = {
-    getAll,
-    get
-};
-
-export default ExpenseService;
